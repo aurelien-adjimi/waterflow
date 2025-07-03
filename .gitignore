@@ -1,3 +1,5 @@
 EDA/
 data/
 /env
+/mlartifacts
+/mlruns
