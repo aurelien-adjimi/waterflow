@@ -12,10 +12,8 @@ import matplotlib.pyplot as plt
 import xgboost as xgb
 import seaborn as sns
 
-# 1. Charger les données nettoyées
 df_clean = pd.read_csv("data/df_clean.csv")
 
-# 2. Préparation des données
 X = df_clean.drop("Potability", axis=1).values
 y = df_clean["Potability"].values
 
@@ -26,13 +24,11 @@ X_train, X_test, y_train, y_test = train_test_split(
     X_scaled, y, test_size=0.2, random_state=42, stratify=y
 )
 
-# 3. Lancement de l'expérience MLflow
 mlflow.set_tracking_uri("http://127.0.0.1:5000")
 
 mlflow.set_experiment("experiment_water_quality_mlp")
 with mlflow.start_run(run_name="keras_mlp_cleaned"):
 
-    # Modèle MLP identique à celui du notebook
     model = Sequential()
     model.add(Dense(128, activation='relu', input_shape=(X.shape[1],)))
     model.add(BatchNormalization())
@@ -100,9 +96,9 @@ print("\n Rapport de classification :")
 print(classification_report(y_test, y_pred))
 
 
-cm = confusion_matrix(y_test, y_pred)
-sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=[0,1], yticklabels=[0,1])
-plt.xlabel("Prédiction")
-plt.ylabel("Réel")
-plt.title("Matrice de confusion - XGBoost")
-plt.show()
+# cm = confusion_matrix(y_test, y_pred)
+# sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=[0,1], yticklabels=[0,1])
+# plt.xlabel("Prédiction")
+# plt.ylabel("Réel")
+# plt.title("Matrice de confusion - XGBoost")
+# plt.show()
