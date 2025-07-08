@@ -3,3 +3,6 @@ data/
 /env
 /mlartifacts
 /mlruns
+/tests/__pycache__
+/tests/.pytest_cache
+/tests/mlruns

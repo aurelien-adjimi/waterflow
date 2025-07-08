@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Qualité de l'eau</title>
+</head>
+<body>
+    <h2>Prédiction de potabilité de l'eau</h2>
+    <form method="POST">
+        {% for feature in ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity'] %}
+            <label for="{{ feature }}">{{ feature }}:</label>
+            <input type="number" step="any" name="{{ feature }}" required><br><br>
+        {% endfor %}
+        <input type="submit" value="Prédire">
+    </form>
+    {% if prediction %}
+        <h3>Résultat : {{ prediction }}</h3>
+    {% endif %}
+</body>
+</html>
